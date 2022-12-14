@@ -1,14 +1,11 @@
 from pathlib import Path
 from django.contrib.messages import constants as messages
-
 import environ
-
 
 env = environ.Env(
     DEBUG=(bool, False)
 )
 environ.Env.read_env()
-
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -69,12 +66,8 @@ AUTH_USER_MODEL = 'accounts.Account'    # Tên model thay thế cho model user m
 
 DATABASES = {
     'default': {
-        'ENGINE': env("DATABASE_ENGINE"),
-        'NAME': env("DATABASE_NAME"),
-        'USER': env("DATABASE_USER"),
-        'PASSWORD': env("DATABASE_PASSWORD"),
-        'HOST': env("DATABASE_HOST"),
-        'PORT': env("DATABASE_PORT"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -93,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = env("LANGUAGE_CODE")
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = env("TIME_ZONE")
 
